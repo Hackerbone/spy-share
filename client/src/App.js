@@ -22,22 +22,7 @@ function App() {
   return (
     <>
       <Router>
-        {user ? (
-          <Switch>
-            <Route path="/notes" exact>
-              <Notes user={user} />
-            </Route>
-            <Route path="/note/:noteID" exact>
-              <Note user={user} />
-            </Route>
-            <Route path="/" exact>
-              <Notes user={user} />
-            </Route>
-            <Route path="*">
-              <NoPage />
-            </Route>
-          </Switch>
-        ) : (
+        {!user ? (
           <Switch>
             <Route path="/login" exact>
               <Login />
@@ -49,6 +34,21 @@ function App() {
               <Home />
             </Route>
 
+            <Route path="*">
+              <NoPage />
+            </Route>
+          </Switch>
+        ) : (
+          <Switch>
+            <Route path="/notes" exact>
+              <Notes user={user} />
+            </Route>
+            <Route path="/note/:noteID" exact>
+              <Note user={user} />
+            </Route>
+            <Route path="/" exact>
+              <Notes user={user} />
+            </Route>
             <Route path="*">
               <NoPage />
             </Route>
