@@ -12,6 +12,7 @@ import "./App.scss";
 
 function App() {
   const [user, setUser] = useState({});
+  console.log("USER", user);
 
   useEffect(() => {
     axios.get("/user").then((res) => {
