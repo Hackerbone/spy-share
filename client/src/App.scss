@@ -1,0 +1,16 @@
+// Constants
+@import './styles/constants';
+
+// Base
+@import './styles/base';
+
+// Pages
+@import './styles/home';
+@import './styles/auth';
+@import './styles/dashboard';
+@import './styles/note';
+
+
+//Components
+@import './styles/notecard';
+@import './styles/singlenote';

@@ -1,0 +1,73 @@
+.note-card {
+
+    background-color: $primary-blue;
+    margin: 1rem;
+    margin-bottom: 0;
+    width: 20rem;
+
+
+    @media only screen and (max-width: 360px) {
+        width: 100%;
+
+    }
+
+    transition: 0.2s ease-in-out all;
+    background-position: center;
+
+    &:hover {
+        transform: scale(1.1);
+
+    }
+
+    .alpha-bg {
+        backdrop-filter: blur(16px) saturate(180%);
+        -webkit-backdrop-filter: blur(16px) saturate(180%);
+        background-color: rgba(17, 25, 40, 0.75);
+        padding: 1rem;
+        height: 20rem;
+        width: 20rem;
+
+        @media only screen and (max-width: 360px) {
+            width: 100%;
+        }
+
+
+
+    }
+
+
+    .note-heading {
+        padding: 0.4rem 0;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-all;
+    }
+
+    .note-description {
+        // white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        /* number of lines to show */
+        -webkit-box-orient: vertical;
+
+        img {
+            display: none;
+        }
+    }
+
+
+    .tag {
+        background-color: $primary-pink;
+        padding: 0.2rem 1rem;
+    }
+
+    .tag-shared {
+        background-color: $primary-green;
+        padding: 0.2rem 1rem;
+        color: $primary-black;
+    }
+}

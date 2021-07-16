@@ -1,0 +1,165 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: $main-font;
+}
+
+body,
+html,
+#root {
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    background-color: $primary-black;
+}
+
+a {
+    color: $primary-white;
+    text-decoration: none;
+}
+
+@mixin d-flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.primary-btn {
+    border: none;
+    margin: 1rem;
+    background-color: $primary-blue;
+    color: $primary-white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.6rem 1.2rem;
+    border: 2px solid $primary-blue;
+    transition: 0.2s ease-in-out all;
+    cursor: pointer;
+
+    &:hover {
+        background-color: transparent;
+    }
+}
+
+.btn {
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.6rem 1.2rem;
+    transition: 0.2s ease-in-out all;
+    cursor: pointer;
+
+}
+
+
+.text-blue {
+    color: $primary-blue;
+}
+
+
+.bg-blue {
+    background-color: $primary-blue;
+}
+
+.m-0 {
+    margin: 0 !important;
+}
+
+.mr-1 {
+    margin-right: 1rem;
+}
+
+.my-1 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+}
+
+.custom-html-style {
+    color: $primary-white;
+
+    blockquote {
+        color: rgba($color: $primary-white, $alpha: 0.7);
+
+    }
+
+    a {
+        color: $primary-pink;
+    }
+
+    code {
+        color: $primary-pink;
+    }
+}
+
+.rc-md-editor {
+    background: #1a1a1a;
+    color: $primary-white;
+    border-radius: 8px;
+    border: none;
+
+
+    .rc-md-navigation {
+        background: #1a1a1a;
+        color: $primary-white;
+        border: none;
+    }
+
+    .editor-container {
+        background: #1a1a1a;
+        color: $primary-white;
+    }
+}
+
+
+p {
+    word-break: break-all;
+}
+
+textarea {
+    background: #1a1a1a !important;
+    color: $primary-white !important;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+// body::-webkit-scrollbar {
+//     width: 5px;
+// }
+
+// body::-webkit-scrollbar-track {
+//     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+//     background-color: $primary-blue;
+
+// }
+
+// body::-webkit-scrollbar-thumb {
+//     background-color: #1a1a1a;
+// }
+
+::-webkit-scrollbar {
+
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $primary-blue;
+
+    outline: 1px solid #1a1a1a;
+}
+
+
+.error-heading {
+    font-size: 10rem;
+
+}
