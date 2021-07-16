@@ -38,9 +38,9 @@ app.use(
 app.use(
   session({
     secret: "secret",
-    cookie: { domain: "https://spy-share.netlify.app/", path: "/", httpOnly: true, secure: false, maxAge: null },
-    saveUninitialized: false,
     resave: false,
+    saveUninitialized: false,
+    cookie: { httpOnly: true, secure: true, maxAge: 1000 * 60 * 60 * 48, sameSite: "none" },
   })
 );
 
