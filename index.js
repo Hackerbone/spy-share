@@ -144,8 +144,12 @@ app.post("/register", (req, res) => {
   }
 });
 // Get User
-app.get("/user", (req, res) => {
-  res.send(req.user);
+app.get("/user", async (req, res) => {
+  try {
+    res.send(req.user);
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 // Logout
