@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const session = require("express-session");
+// const session = require("express-session");
+const session = require("cookie-session");
+
 const app = express();
 const passport = require("passport");
 const cors = require("cors");
@@ -35,9 +37,11 @@ app.use(
 //Express Sessions
 app.use(
   session({
-    secret: "secret",
+    // secret: "secret",
     resave: true,
     saveUninitialized: true,
+    name: "session",
+    keys: ["key1", "key2"],
   })
 );
 
