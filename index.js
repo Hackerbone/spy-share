@@ -33,7 +33,7 @@ app.use(
     credentials: true,
   })
 );
-
+app.enable("trust proxy", 1);
 //Express Sessions
 app.use(
   session({
