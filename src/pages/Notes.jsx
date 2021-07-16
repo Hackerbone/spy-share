@@ -1,10 +1,10 @@
 import React from "react";
-import NoteCard from "../components/NoteCard";
+// import NoteCard from "../components/NoteCard";
 import { useState, useEffect, useRef } from "react";
 import axios from "../utils/axiosurl";
 import SingleNote from "../components/SingleNote";
 import swal from "sweetalert";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import "react-markdown-editor-lite/lib/index.css";
 
 import Editor from "react-markdown-editor-lite";
@@ -23,7 +23,7 @@ const mdDefault = `
 `;
 
 export default function Notes(props) {
-  const history = useHistory();
+  // const history = useHistory();
   const mdEditor = useRef(null);
 
   const user = props.user;
