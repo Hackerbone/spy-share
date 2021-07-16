@@ -20,10 +20,11 @@ export default function Login({ setUser }) {
       const setUserToApp = async () => {
         await axios.get("/user").then((res) => {
           setUser(res.data);
-
-          if (res.data.email.length > 0) {
-            return true;
-          }
+          console.log("LOGIN DATA", res.data);
+          // if (res.data.email.length > 0) {
+          //   return true;
+          // }
+          return true;
         });
         return false;
       };
