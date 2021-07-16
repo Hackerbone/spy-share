@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "../utils/axiosurl";
 import swal from "sweetalert";
 
-export default function Login({ user, setUser }) {
+export default function Login({ setUser }) {
   const loginUser = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
