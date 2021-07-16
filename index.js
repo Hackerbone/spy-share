@@ -146,6 +146,7 @@ app.post("/register", (req, res) => {
 // Get User
 app.get("/user", async (req, res) => {
   try {
+    console.log(req.user);
     res.send(req.user);
   } catch (err) {
     console.log(err);
