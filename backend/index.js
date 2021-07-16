@@ -20,9 +20,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Build file serving using express
-app.use(express.static("build"));
+// app.use(express.static("build"));
 
-app.use(express.static(path.join(__dirname, "build")));
+// app.use(express.static(path.join(__dirname, "build")));
 
 // cors
 app.use(
@@ -61,10 +61,10 @@ mongoose
 
 //=======================ROUTES=====================================//
 
-app.get("/", (req, res) => {
-  console.log(req.user);
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
+// app.get("/", (req, res) => {
+//   console.log(req.user);
+//   res.sendFile(path.join(__dirname, "build", "index.html"));
+// });
 // app.use("/", require("./routes/index"));
 // app.use("/users", require("./routes/users"));
 
