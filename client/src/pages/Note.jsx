@@ -28,7 +28,7 @@ export default function Note({ user }) {
     setModifiedNote({ ...modifiedNote, description: text });
   };
   const getSingleNote = (e) => {
-    axios.get("/getNote/" + noteID).then((res) => {
+    axios.get("/user/getNote/" + noteID).then((res) => {
       setNote(res.data);
       setModifiedNote(res.data);
     });
@@ -37,7 +37,7 @@ export default function Note({ user }) {
   const shareNote = async (e) => {
     e.preventDefault();
     await axios
-      .post("/share/" + noteID, { userEmail: userEmail })
+      .post("/user/share/" + noteID, { userEmail: userEmail })
       .then((res) => {
         if (res.status === 200) {
           swal("Your note has been shared ", `${userEmail} can now view your note`, "success").then((clicked) => {
@@ -58,7 +58,7 @@ export default function Note({ user }) {
     const modifiedObj = modifiedNote;
     modifiedObj.modifiedDate = Date.now();
     await axios
-      .post("/update/" + noteID, modifiedObj)
+      .post("/user/update/" + noteID, modifiedObj)
       .then((res) => {
         if (res.status === 200) {
           swal("Your note has been modified", "Continue to your note", "success").then((clicked) => {
@@ -77,7 +77,7 @@ export default function Note({ user }) {
     swal("Are you sure you want to delete this note?", "This action cannot be undone", "warning").then(async (clicked) => {
       if (clicked) {
         await axios
-          .get("/delete/" + noteID)
+          .get("/user/delete/" + noteID)
           .then((res) => {
             if (res.status === 200) {
               swal("Your note has been deleted", "Continue to your notes", "success").then((clickedA) => {
@@ -100,7 +100,7 @@ export default function Note({ user }) {
     swal("Are you sure you want to delete this note?", "This action cannot be undone", "warning").then(async (clicked) => {
       if (clicked) {
         await axios
-          .get("/delete-shared/" + noteID)
+          .get("/user/delete-shared/" + noteID)
           .then((res) => {
             if (res.status === 200) {
               swal("Your note has been removed", "Continue to your notes", "success").then((clickedA) => {
@@ -119,7 +119,7 @@ export default function Note({ user }) {
     });
   };
   useEffect(() => {
-    axios.get("/getNote/" + noteID).then((res) => {
+    axios.get("/user/getNote/" + noteID).then((res) => {
       setNote(res.data);
       setModifiedNote(res.data);
     });

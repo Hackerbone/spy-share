@@ -18,7 +18,7 @@ export default function Login() {
       };
 
       axios
-        .post("/login", loginObj)
+        .post("/user/login", loginObj)
         .then((res) => {
           if (res.data === "Authentication successful") {
             swal(res.data, "Continue to your notes", "success").then((clicked) => {

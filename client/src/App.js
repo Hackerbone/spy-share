@@ -14,7 +14,7 @@ function App() {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    axios.get("/user").then((res) => {
+    axios.get("/user/getUser").then((res) => {
       setUser(res.data);
     });
   }, []);

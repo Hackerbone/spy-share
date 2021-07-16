@@ -43,7 +43,7 @@ export default function Notes(props) {
 
   const getAllNotes = () => {
     axios
-      .get("/getNotes")
+      .get("/user/getNotes")
       .then((res) => {
         if (res.status === 200) {
           setGetNotes(res.data);
@@ -60,7 +60,7 @@ export default function Notes(props) {
   const createNote = async (e) => {
     e.preventDefault();
     await axios
-      .post("/create", note)
+      .post("/user/create", note)
       .then((res) => {
         getAllNotes();
       })
@@ -71,7 +71,7 @@ export default function Notes(props) {
   const logout = (e) => {
     e.preventDefault();
     axios
-      .get("/logout", note)
+      .get("/user/logout", note)
       .then((res) => {
         if (res.data === "Logged out successfully") {
           swal(res.data, "Come back later!", "success").then((clicked) => {
@@ -89,7 +89,7 @@ export default function Notes(props) {
   useEffect(() => {
     const getAllNotes = async () => {
       await axios
-        .get("/getNotes")
+        .get("/user/getNotes")
         .then((res) => {
           if (res.status === 200) {
             setGetNotes(res.data);
@@ -131,14 +131,6 @@ export default function Notes(props) {
             />
             <label className="my-1">Description</label>
 
-            {/* <textarea
-              type="text"
-              placeholder="Content of your note"
-              name="description"
-              onChange={(e) => {
-                setNote({ ...note, description: e.target.value });
-              }}
-            /> */}
             <Editor
               ref={mdEditor}
               style={{ height: "600px" }}

@@ -17,7 +17,7 @@ export default function Register() {
       password2,
     };
     await axios
-      .post("/register", regObj)
+      .post("/user/register", regObj)
       .then((res) => {
         if (res.data === "Registration Successful") {
           swal(res.data, "Continue to login", "success").then((clicked) => {
