@@ -62,24 +62,20 @@ mongoose
 
 //=======================ROUTES=====================================//
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
+// app.use("/login", (req, res) => {
+//   res.sendFile(path.join(__dirname, "build", "index.html"));
+// });
 
-app.use("/login", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
+// app.get("/register", (req, res) => {
+//   res.sendFile(path.join(__dirname, "build", "index.html"));
+// });
+// app.get("/notes", (req, res) => {
+//   res.sendFile(path.join(__dirname, "build", "index.html"));
+// });
 
-app.get("/register", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
-app.get("/notes", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
-
-app.get("/note/:id", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
+// app.get("/note/:id", (req, res) => {
+//   res.sendFile(path.join(__dirname, "build", "index.html"));
+// });
 
 // app.use("/", require("./routes/index"));
 // app.use("/users", require("./routes/users"));
@@ -326,6 +322,12 @@ app.post("/user/update/:id", async (req, res) => {
   } else {
     res.send("Cannot Modify Other's notes");
   }
+});
+
+// FINAL ROUTE
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 //======================================================================//
