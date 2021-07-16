@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 // cors
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://spy-share.netlify.app",
     credentials: true,
   })
 );
