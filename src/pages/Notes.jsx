@@ -169,7 +169,8 @@ export default function Notes(props) {
         <div className="notes">
           {getNotes.length > 0 ? (
             <>
-              {getNotes &&
+              {console.log(getNotes)}
+              {/* {getNotes &&
                 getNotes.map((item, idx) => {
                   return (
                     <div
@@ -182,7 +183,7 @@ export default function Notes(props) {
                       <NoteCard data={item} user={user} />
                     </div>
                   );
-                })}
+                })} */}
             </>
           ) : (
             <>
