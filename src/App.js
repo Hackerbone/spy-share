@@ -15,9 +15,13 @@ function App() {
   console.log("USER", user);
 
   useEffect(() => {
-    axios.get("/user").then((res) => {
-      setUser(res.data);
-    });
+    const getUser = async () => {
+      await axios.get("/user").then((res) => {
+        setUser(res.data);
+      });
+    };
+
+    getUser();
   }, []);
 
   return (
