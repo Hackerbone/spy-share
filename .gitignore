@@ -4,5 +4,6 @@
 /backend/.env
 .env
 package-lock.json
-
+./client
+./backend
 # https://github.com/Hackerbone/spy-share.git

@@ -20,17 +20,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Build file serving using express
-// app.use(express.static("build"));
+app.use(express.static("build"));
 
-// app.use(express.static(path.join(__dirname, "build")));
+app.use(express.static(path.join(__dirname, "build")));
 
 // cors
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000",
+//     credentials: true,
+//   })
+// );
 
 //Express Sessions
 app.use(
@@ -38,7 +38,7 @@ app.use(
     secret: "secret",
     resave: false,
     saveUninitialized: false,
-    cookie: { httpOnly: true, secure: true, maxAge: 1000 * 60 * 60 * 48, sameSite: "none" },
+    cookie: { httpOnly: false, secure: false, maxAge: 1000 * 60 * 60 * 48 },
   })
 );
 
@@ -62,16 +62,31 @@ mongoose
 
 //=======================ROUTES=====================================//
 
-// app.get("/", (req, res) => {
-//   console.log(req.user);
-//   res.sendFile(path.join(__dirname, "build", "index.html"));
-// });
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+
+app.use("/login", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+
+app.get("/register", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+app.get("/notes", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+
+app.get("/note/:id", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+
 // app.use("/", require("./routes/index"));
 // app.use("/users", require("./routes/users"));
 
 //Login Route
 
-app.post("/login", (req, res, next) => {
+app.post("/user/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     console.log("ERR", err);
     console.log("user", user);
@@ -90,7 +105,7 @@ app.post("/login", (req, res, next) => {
 
 //Register Route
 
-app.post("/register", (req, res) => {
+app.post("/user/register", (req, res) => {
   const { name, email, password, password2 } = req.body;
 
   console.log("REQ BOD", req.body);
@@ -145,19 +160,22 @@ app.post("/register", (req, res) => {
   }
 });
 // Get User
-app.get("/user", (req, res) => {
+app.get("/user/getUser", (req, res) => {
+  console.log("USER");
+  console.log(req.user);
+
   res.send(req.user);
 });
 
 // Logout
-app.get("/logout", function (req, res) {
+app.get("/user/logout", function (req, res) {
   req.logout();
   res.send("Logged out successfully");
 });
 
 //___________________________NOTES_______________________//
 
-app.post("/create", async (req, res) => {
+app.post("/user/create", async (req, res) => {
   const note = new Note({
     title: req.body.title,
     description: req.body.description,
@@ -188,9 +206,8 @@ app.post("/create", async (req, res) => {
   }
 });
 
-app.post("/share/:id", async (req, res) => {
+app.post("/user/share/:id", async (req, res) => {
   const id = req.params.id;
-  console.log("");
   const noteUser = await User.findById({ _id: req.user._id });
   const user = await User.findOne({ email: req.body.userEmail });
   console.log("USer", user);
@@ -217,7 +234,7 @@ app.post("/share/:id", async (req, res) => {
   }
 });
 
-app.get("/getNotes", async (req, res) => {
+app.get("/user/getNotes", async (req, res) => {
   try {
     const noteRes = await Note.find();
     const user = await User.findById({ _id: req.user._id });
@@ -234,7 +251,7 @@ app.get("/getNotes", async (req, res) => {
   }
 });
 
-app.get("/getNote/:id", async (req, res) => {
+app.get("/user/getNote/:id", async (req, res) => {
   const id = req.params.id;
   const user = await User.findById({ _id: req.user._id });
   if (user.note_ids.includes(id)) {
@@ -249,7 +266,7 @@ app.get("/getNote/:id", async (req, res) => {
   }
 });
 
-app.get("/delete/:id", async (req, res) => {
+app.get("/user/delete/:id", async (req, res) => {
   const id = req.params.id;
   const user = await User.findById({ _id: req.user._id });
   if (user.note_ids.includes(id)) {
@@ -265,7 +282,7 @@ app.get("/delete/:id", async (req, res) => {
   }
 });
 
-app.get("/delete-shared/:id", async (req, res) => {
+app.get("/user/delete-shared/:id", async (req, res) => {
   const id = req.params.id;
   const user = await User.findById({ _id: req.user._id });
   if (user.note_ids.includes(id)) {
@@ -281,7 +298,7 @@ app.get("/delete-shared/:id", async (req, res) => {
   }
 });
 
-app.post("/update/:id", async (req, res) => {
+app.post("/user/update/:id", async (req, res) => {
   const id = req.params.id;
 
   const user = await User.findById({ _id: req.user._id });
