@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "../utils/axiosurl";
 import swal from "sweetalert";
 
-export default function Login() {
+export default function Login({ user, setUser }) {
   const loginUser = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -17,17 +17,32 @@ export default function Login() {
         password,
       };
 
+      const setUserToApp = async () => {
+        await axios.get("/user").then((res) => {
+          setUser(res.data);
+
+          if (res.data.email.length > 0) {
+            return true;
+          }
+        });
+        return false;
+      };
+
       axios
         .post("/login", loginObj)
         .then((res) => {
           if (res.data === "Authentication successful") {
-            swal(res.data, "Continue to your notes", "success").then((clicked) => {
-              if (clicked) {
-                window.location.href = "/notes";
-              }
-            });
-          } else {
-            swal(res.data, "Please check your credentials", "warning");
+            const val = setUserToApp();
+
+            if (val) {
+              swal(res.data, "Continue to your notes", "success").then((clicked) => {
+                if (clicked) {
+                  window.location.href = "/notes";
+                }
+              });
+            } else {
+              swal(res.data, "Please check your credentials", "warning");
+            }
           }
         })
         .catch((err) => {

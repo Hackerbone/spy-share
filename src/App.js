@@ -30,7 +30,7 @@ function App() {
         {!user ? (
           <Switch>
             <Route path="/login" exact>
-              <Login />
+              <Login user={user} setUser={setUser} />
             </Route>
             <Route path="/register" exact>
               <Register />
