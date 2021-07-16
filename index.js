@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
-// const session = require("express-session");
-const session = require("cookie-session");
+const session = require("express-session");
+// const session = require("cookie-session");
 
 const app = express();
 const passport = require("passport");
@@ -37,11 +37,10 @@ app.use(
 //Express Sessions
 app.use(
   session({
-    // secret: "secret",
-    resave: true,
-    saveUninitialized: true,
-    name: "session",
-    keys: ["key1", "key2"],
+    secret: "secret",
+    cookie: { domain: "https://spy-share.netlify.app/", path: "/", httpOnly: true, secure: false, maxAge: null },
+    saveUninitialized: false,
+    resave: false,
   })
 );
 
